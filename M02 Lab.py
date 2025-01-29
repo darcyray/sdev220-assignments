@@ -6,21 +6,33 @@ If the gpa is 3.5 or higher, it will print a 'Dean's List' message.
 If the gpa is 3.25 or higher, it will print an ' Honor Role' message.
 '''
 
-first_name = input("Please enter your first name: ")
-last_name = input("Please enter your last name. Enter 'ZZZ' to quit: ")
-gpa = float(input("Please enter your grade point average: "))
+# Constants
+DEANS_LIST: float = 3.5
+HONOR_ROLL: float = 3.25
+SENTINEL: str = "ZZZ"
 
-while last_name != "ZZZ":
-    if gpa >= 3.5:
-        print("Congratulations, you have made the Dean's List!")
+
+# Variables
+first_name: str = ''
+last_name: str = ''
+gpa: float = 0.0
+
+# Main
+while last_name != SENTINEL:
+    last_name = input("Please enter your last name. Enter ZZZ to quit: ")
+    if last_name == SENTINEL:
         break
-    elif gpa >= 3.25:
-        print("Congratulations, you have made the Honor Roll!")
-        break
-    elif gpa < 3.25:
-        print("Your gpa is not high enough to qualify for the Honor Roll or Dean's List.")
-        break
-else:
-    exit
+    first_name = input("Please enter your first name: ")
+    gpa = input("Please enter your GPA: ")
+    
+    try:
+        gpa = float(gpa)
+    except ValueError:
+        continue
+    if gpa >= DEANS_LIST:
+        print(f"Congratulations, {first_name}  {last_name}, you have made the Dean's List.")
+    elif gpa >= HONOR_ROLL:
+        print(f"Congratulations, {first_name}  {last_name}, you have made the Honor Roll!")
+exit
     
     
